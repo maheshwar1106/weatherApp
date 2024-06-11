@@ -1,0 +1,264 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  background-image: url("../background-images/fullpage-bg.png");
+  height: 120vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-app {
+  background-image: url("../background-images/background-day.png");
+  width: 80%;
+  height: 90%;
+  border-radius: 1rem;
+}
+
+.weather-app-night {
+  background-image: url("../background-images/background-night.png");
+  width: 80%;
+  height: 90%;
+  border-radius: 2.5rem;
+}
+.weather-header {
+  width: 100%;
+  height: 10rem;
+  border-radius: 2.5rem;
+  display: flex;
+  border-radius: inherit;
+}
+
+.weather-header .divisionOne {
+  width: 50%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+.divisionOne .child {
+  text-align: start;
+  margin: 0px 25px;
+}
+
+.divisionOne .child h1 {
+  font-size: 50px;
+  font-weight: 400;
+  color: white;
+  margin: 5px 0px 5px 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.divisionOne .child h2 {
+  font-size: 16px;
+  color: rgb(222, 222, 222);
+  font-weight: 400;
+  margin: 5px 0px 5px 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weather-header .divisionTwo {
+  width: 50%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+.divisionTwo .child {
+  display: flex;
+}
+
+.search-form input {
+  height: 40px;
+  width: 300px;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  text-indent: 10px;
+  font-size: 15px;
+}
+.search-form button {
+  height: 40px;
+  width: 70px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  background-color: #17249a;
+}
+
+.divisionTwo .child button {
+  height: 40px;
+  width: 70px;
+  margin: 0px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #17249a;
+}
+
+.locationBar img {
+  height: inherit;
+  width: inherit;
+  object-fit: contain;
+  padding: 5px;
+}
+.midlevel-container {
+  width: 100%;
+  height: 10rem;
+}
+.midlevel-container .weatherNo {
+  width: 50%;
+  height: inherit;
+}
+
+.midlevel-container {
+  display: flex;
+}
+
+.midlevel-container .weatherNo {
+  display: flex;
+  align-items: center;
+}
+.weatherNo h1 {
+  font-size: 130px;
+  margin-left: 50px;
+  font-weight: 200;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weatherNo ul {
+  list-style-type: none;
+  margin-left: 15px;
+}
+
+.weatherNo ul li {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 5px;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weatherUnit {
+  display: flex;
+}
+.weatherUnit button {
+  font-size: 20px;
+  font-weight: 200;
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weatherUnit p {
+  font-size: 20px;
+  margin: 0px 5px;
+}
+
+.weatherDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: inherit;
+}
+.weatherBlock {
+  display: flex;
+  align-items: center;
+}
+.weatherBlock ul {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.weatherBlock ul li {
+  font-size: 20px;
+  color: white;
+  font-weight: 200;
+  margin-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+
+.weatherBlock ul li h4 {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.weather-pic img {
+  width: 10rem;
+  height: 8rem;
+}
+
+/* ----------------------------------week data display--------------------------------- */
+
+.weekDataContainer {
+  width: 100%;
+  height: 30%;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.displayData {
+  width: 90%;
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: space-evenly;
+  background-color: rgba(10, 36, 128, 0.6);
+}
+
+.dataMapping {
+  height: 90%;
+  width: 150px;
+  text-align: center;
+  margin: 10px 12px;
+}
+
+.dayDisplay {
+  margin: 15px 0px 0px 0px;
+  font-size: 13px;
+  color: rgb(243, 243, 243);
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tempData {
+  margin: 10px 0px;
+  font-size: 13px;
+  color: rgb(245, 245, 245);
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.weatherDesc {
+  font-size: 13px;
+  color: rgb(245, 245, 245);
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
