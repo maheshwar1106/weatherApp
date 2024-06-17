@@ -71,7 +71,7 @@ const WeatherApp = () => {
         );
         setWeatherReport(weatherReport.data);
         setCoOrdinates(co_ordinates);
-        time = new Date().toLocaleString("en-US", {
+         time = new Date().toLocaleString("en-US", {
           timeZone: `${co_ordinates.timezone}`,
           timeStyle: "short",
           hourCycle: "h24",
