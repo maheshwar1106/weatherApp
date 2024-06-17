@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import Location from "../images/location-light .svg";
 import axios from "axios";
 import Midsection from "./Midsection";
@@ -55,7 +54,8 @@ let date = locDateArr[1];
 let isDay = d.getHours() > 6 && d.getHours() < 18 ? "AM" : "PM";
 
 const WeatherApp = () => {
-  const [location, setLocation] = useState("Anna Nagar West");
+  const valueRef = useRef("Nandanam");
+  const [location, setLocation] = useState(valueRef.current);
   const [coOrdinates, setCoOrdinates] = useState({});
   const [weatherReport, setWeatherReport] = useState({});
 
@@ -66,59 +66,42 @@ const WeatherApp = () => {
           `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`
         );
         let co_ordinates = response.data.results[0];
-
         let weatherReport = await axios.get(
           `https://api.open-meteo.com/v1/forecast?latitude=${co_ordinates.latitude}&longitude=${co_ordinates.longitude}&daily=temperature_2m_min&daily=temperature_2m_max&daily=precipitation_probability_mean&daily=weather_code&daily=wind_speed_10m_max`
         );
         setWeatherReport(weatherReport.data);
         setCoOrdinates(co_ordinates);
+        time = new Date().toLocaleString("en-US", {
+          timeZone: `${co_ordinates.timezone}`,
+          timeStyle: "short",
+          hourCycle: "h24",
+        });
+        let hour = parseInt(time[0] + time[1]);
+        isDay = hour > 6 && hour < 18 ? "AM" : "PM";
+        dateformat = new Intl.DateTimeFormat("en-US", {
+          timeZone: `${co_ordinates.timezone}`,
+          timeZoneName: "short",
+        });
+        locDate = dateformat.format(new Date());
+        locDateArr = locDate.split("/");
+        getMonth = locDateArr[0];
+        getYear = locDateArr[2].split(",");
+        day = days[d.getDay()];
+        month = months[parseInt(getMonth) - 1];
+        year = getYear[0];
+        date = locDateArr[1];
+        console.log("My coordinates are -->", co_ordinates);
       } catch (err) {
         console.log("There is an error in an location", err);
       }
     };
 
     initialFetch();
-  }, []);
+  }, [location]);
 
-  const submitHandler = async () => {
-    try {
-      let response = await axios.get(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`
-      );
-      let co_ordinates = response.data.results[0];
-
-      let weatherReport = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${co_ordinates.latitude}&longitude=${co_ordinates.longitude}&daily=temperature_2m_min&daily=temperature_2m_max&daily=precipitation_probability_mean&daily=weather_code&daily=wind_speed_10m_max`
-      );
-      setWeatherReport(weatherReport.data);
-      setCoOrdinates(co_ordinates);
-      time = new Date().toLocaleString("en-US", {
-        timeZone: `${co_ordinates.timezone}`,
-        timeStyle: "short",
-        hourCycle: "h24",
-      });
-      let hour = parseInt(time[0] + time[1]);
-      isDay = hour > 6 && hour < 18 ? "AM" : "PM";
-
-      dateformat = new Intl.DateTimeFormat("en-US", {
-        timeZone: `${co_ordinates.timezone}`,
-        timeZoneName: "short",
-      });
-
-      locDate = dateformat.format(new Date());
-      locDateArr = locDate.split("/");
-      getMonth = locDateArr[0];
-      getYear = locDateArr[2].split(",");
-
-      day = days[d.getDay()];
-      month = months[parseInt(getMonth) - 1];
-      year = getYear[0];
-      date = locDateArr[1];
-
-      console.log("My coordinates are -->", co_ordinates);
-    } catch (err) {
-      console.log("There is an error in an location", err);
-    }
+  const submitHandler = () => {
+    const searchLoc = valueRef.current.value;
+    setLocation(searchLoc);
   };
 
   return (
@@ -137,7 +120,7 @@ const WeatherApp = () => {
               <form className="search-form">
                 <input
                   name="location"
-                  onChange={(e) => setLocation(e.target.value)}
+                  ref={valueRef}
                   type="text"
                   placeholder="Type a city or location"
                 />
